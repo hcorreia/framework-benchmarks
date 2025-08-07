@@ -1,0 +1,18 @@
+services:
+  go-http:
+    build:
+      context: go-http
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ADDR=:8000
+      - GOMAXPROCS=1
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+        reservations:
+          cpus: "1"
+          memory: 1G
