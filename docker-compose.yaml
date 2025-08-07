@@ -16,3 +16,21 @@ services:
         reservations:
           cpus: "1"
           memory: 1G
+  js-adonisjs:
+    build:
+      context: js-adonisjs
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3333
+      - APP_KEY="qdhEGKJ4kn2HiS8o1S5Vd5H66Cp_pkLm"
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+        reservations:
+          cpus: "1"
+          memory: 1G
