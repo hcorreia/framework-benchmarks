@@ -8,10 +8,10 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 go build -v -o server ./...
+RUN CGO_ENABLED=0 go build -v -o ./build/ ./...
 
 FROM scratch
 
-COPY --from=build /app/server /server
+COPY --from=build /app/build/go-http /server
 
 ENTRYPOINT ["/server"]

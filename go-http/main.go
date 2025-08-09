@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"framework-benchmarks/go-http/utils"
 	"log"
 	"net/http"
 )
@@ -10,18 +11,24 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Ok")
+		utils.WriteJSON(w, http.StatusOK, utils.JSON{
+			"result": "Ok",
+		})
 	})
 	mux.HandleFunc("GET /db/", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusNotImplemented)
-		fmt.Fprint(w, "Not implemented!")
+		utils.WriteJSON(w, http.StatusNotImplemented, utils.JSON{
+			"result": "Not implemented!",
+		})
 	})
 	mux.HandleFunc("GET /chaos/", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusNotImplemented)
-		fmt.Fprint(w, "Not implemented!")
+		utils.WriteJSON(w, http.StatusNotImplemented, utils.JSON{
+			"result": "Not implemented!",
+		})
 	})
 	mux.HandleFunc("GET /health/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Ok")
+		utils.WriteJSON(w, http.StatusOK, utils.JSON{
+			"result": "Ok",
+		})
 	})
 
 	fmt.Println("Running on port", Env.Addr)
