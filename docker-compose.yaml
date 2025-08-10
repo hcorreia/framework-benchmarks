@@ -8,6 +8,7 @@ services:
     environment:
       - ADDR=:8000
       - GOMAXPROCS=1
+      - CHAOS_ENDPOINT=http://rust-axum:3000/chaos-server/
     deploy:
       resources:
         limits:
@@ -26,6 +27,7 @@ services:
       - HOST=0.0.0.0
       - PORT=3333
       - APP_KEY="qdhEGKJ4kn2HiS8o1S5Vd5H66Cp_pkLm"
+      - CHAOS_ENDPOINT=http://rust-axum:3000/chaos-server/
     deploy:
       resources:
         limits:
