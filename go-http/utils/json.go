@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 )
@@ -26,4 +27,30 @@ func WriteJSON(w http.ResponseWriter, statusCode int, v JSON) error {
 	w.Write(result)
 
 	return nil
+}
+
+func HttpGetJSON(url string, v any) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return err
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+
+	}
+
+	err = json.Unmarshal(body, &v)
+	if err != nil {
+		return err
+	}
+
+	return err
 }

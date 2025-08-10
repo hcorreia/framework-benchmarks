@@ -29,7 +29,9 @@ func getEnvOrPanic(key string) string {
 }
 
 var Env = struct {
-	Addr string
+	Addr          string
+	ChaosEndpoint string
 }{
-	Addr: getEnvOrFallback("ADDR", ":8000"),
+	Addr:          getEnvOrFallback("ADDR", ":8000"),
+	ChaosEndpoint: getEnvOrPanic("CHAOS_ENDPOINT"),
 }
