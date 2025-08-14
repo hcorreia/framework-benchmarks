@@ -1,0 +1,7 @@
+_build
+deps
+Dockerfile
+.dockerignore
+README.md
+tmp
+.env

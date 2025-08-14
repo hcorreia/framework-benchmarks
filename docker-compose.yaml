@@ -17,6 +17,28 @@ services:
         reservations:
           cpus: "1"
           memory: 1G
+
+  elixir-phoenix:
+    build:
+      context: elixir-phoenix
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - MIX_ENV=prod
+      - DATABASE_URL=ecto://USER:PASS@HOST/DATABASE
+      - SECRET_KEY_BASE=cH13YtEZlvK5cmlkk+OLoBovmAXgIBO9+wr3VxQVMvCZuduzBO4vIKi/FvawfaYt
+      - CHAOS_ENDPOINT=http://rust-axum:3000/chaos-server/
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+        reservations:
+          cpus: "1"
+          memory: 1G
+
   js-adonisjs:
     build:
       context: js-adonisjs
