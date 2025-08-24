@@ -87,3 +87,6 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :elixir_phoenix,
+  chaos_endpoint: System.get_env("CHAOS_ENDPOINT") || "http://localhost:3000/chaos-server/"

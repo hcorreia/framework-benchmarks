@@ -116,4 +116,11 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Req
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  config :elixir_phoenix,
+    chaos_endpoint:
+      System.get_env("CHAOS_ENDPOINT") ||
+        raise("""
+        environment variable CHAOS_ENDPOINT is missing.
+        """)
 end
