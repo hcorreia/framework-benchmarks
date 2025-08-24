@@ -65,7 +65,8 @@ async fn main() {
         .route(
             "/chaos-server/",
             get(|State(state): State<AppState>| async move {
-                let sleep_time = time::Duration::from_millis(random::<u64>() % 100 + 1);
+                let sleep_ms: u64 = 100 + (random::<u64>() % 10 + 1);
+                let sleep_time = time::Duration::from_millis(sleep_ms);
 
                 tokio::time::sleep(sleep_time).await;
 

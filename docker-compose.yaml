@@ -13,10 +13,12 @@ services:
       resources:
         limits:
           cpus: "1"
-          memory: 1G
+          memory: 256M
         reservations:
           cpus: "1"
-          memory: 1G
+          memory: 256M
+    depends_on:
+      - rust-axum
 
   elixir-phoenix:
     build:
@@ -34,10 +36,12 @@ services:
       resources:
         limits:
           cpus: "1"
-          memory: 1G
+          memory: 256M
         reservations:
           cpus: "1"
-          memory: 1G
+          memory: 256M
+    depends_on:
+      - rust-axum
 
   js-adonisjs:
     build:
@@ -54,10 +58,12 @@ services:
       resources:
         limits:
           cpus: "1"
-          memory: 1G
+          memory: 256M
         reservations:
           cpus: "1"
-          memory: 1G
+          memory: 256M
+    depends_on:
+      - rust-axum
 
   rust-axum:
     build:
@@ -71,7 +77,26 @@ services:
       resources:
         limits:
           cpus: "1"
-          memory: 1G
+          memory: 256M
         reservations:
           cpus: "1"
-          memory: 1G
+          memory: 256M
+
+  benchmark:
+    build:
+      context: benchmark
+      dockerfile: Dockerfile
+    restart: "no"
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 256M
+        reservations:
+          cpus: "2"
+          memory: 256M
+    depends_on:
+      - go-http
+      - elixir-phoenix
+      - js-adonisjs
+      - rust-axum
