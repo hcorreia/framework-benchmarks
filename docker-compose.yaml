@@ -65,6 +65,26 @@ services:
     depends_on:
       - rust-axum
 
+  python-fastapi:
+    build:
+      context: python-fastapi
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - CHAOS_ENDPOINT=http://rust-axum:3000/chaos-server/
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 256M
+        reservations:
+          cpus: "1"
+          memory: 256M
+    depends_on:
+      - rust-axum
+
   rust-axum:
     build:
       context: rust-axum

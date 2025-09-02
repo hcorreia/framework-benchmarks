@@ -1,0 +1,14 @@
+Dockerfile
+.dockerignore
+README.md
+
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+venv/
+
+tmp
+.env
